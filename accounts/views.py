@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import SignupForm
-from django.conrfib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 
 def signup(request):
     if request.method == 'POST':

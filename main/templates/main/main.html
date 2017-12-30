@@ -143,4 +143,38 @@
     </div>
 </section>
 <!-- Features End -->
+
+<!-- Portfolio Start -->
+<section class="section-1">
+    <div class="container">
+        <div class="text-center">
+            <h2 style="font-family: 'Hanna';"><span class="theme-color" style="font-family: 'Hanna';">COM.MA</span>의 활동</h2>
+            <p>Lorem Ipsum is simply dummy text</p>
+        </div><!-- / text-center -->
+    </div>
+    <div class="container-fluid">
+        <div class="portfolio isotope masonry row col-4 mrg-top-50">
+            {% for photo in photos %}
+            <a href="{{ photo.photo.url }}" class="folio-item lightbox-img">
+                <div class="folio-style-2">
+                    <div class="folio-image">
+                        <img class="img-responsive" src="{{ photo.photo.url }}" alt="">
+                    </div><!-- /folio-image -->
+                    <div class="overlay">
+                        <div class="folio-caption">
+                            <h3 class="folio-tittle">{{ photo.site }}</h3>
+                            <p class="describe">{{ photo.date }}</p>
+                        </div><!-- /folio-caption -->
+                    </div><!-- /overlay -->
+                </div><!-- folio-style -->
+            </a><!-- /folio-item -->
+            {% endfor %}
+        </div><!-- /portfolio-->    
+    </div>
+    <div class="mrg-vertical-50 text-center">
+        <a href="{% url "main:act_photo" %}" class="btn btn-dark btn-md">Show More</a>
+    </div>
+</section>
+<!-- Portfolio End -->        
+    
 {% endblock content %}

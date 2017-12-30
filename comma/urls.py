@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^main/', include('main.urls', namespace='main')),
     url(r'^$', lambda r: redirect('main:main'), name='root'),
+    url(r'^accounts/', include('accounts.urls')),
 ]

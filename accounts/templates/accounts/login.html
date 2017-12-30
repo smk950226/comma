@@ -1,0 +1,53 @@
+{% extends "accounts/layout.html" %}
+{% load staticfiles %}
+
+{% block content %}
+ <!-- Hero Start -->
+ <section id="hero">
+    <div class="fs-hero hero-img" style="background-image:url({% static 'images/background.jpg' %})">
+        <div class="hero-caption text-white center-left">
+            <h3 class="font-weight-light">COM.MA</h3>
+            <p class="mrg-top-20">COMmunication with MAjor</p>
+            <div class="mrg-top-20">
+                <a href="{% url "root" %}" class="btn btn-white-inverse btn-md">About</a>
+            </div><!-- margin -->
+        </div>
+    </div>
+</section>
+<!-- Hero End -->
+</div>   
+<!-- Modal Start -->
+<div class="modal fade modal-center load-active" id="login" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body no-pdd">
+                <div class="login-panel pdd-horizon-15 pdd-vertical-30">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
+                            <div class="right-panel text-center">
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <h3 class="mrg-btm-30 mrg-top-40">LOGIN</h3>
+                                        <form action="" method="post">
+                                            {% csrf_token %}
+
+                                            <table>
+                                                {{ form.as_table}}
+                                            </table>
+                                            <input type="submit">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-close">
+                    <button type="button" class="btn icon-btn-md icon-btn-round btn-dark lh-0" data-dismiss="modal"><i class="ei ei-close"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal End -->
+{% endblock content %}

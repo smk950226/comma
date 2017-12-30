@@ -68,7 +68,7 @@
                                     <a href="#">프로필</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#">로그아웃</a>
+                                    <a href="{% url "logout" %}?next={{ request.path }}">로그아웃</a>
                                 </li>
                             </ul>   
                         </div>

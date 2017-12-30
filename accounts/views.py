@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import SignupForm
+from django.conrfib.auth.decorators import login_required
 
 def signup(request):
     if request.method == 'POST':
@@ -12,3 +13,7 @@ def signup(request):
     return render(request, 'accounts/signup_form.html', {
         'form': form,
         })
+
+@login_required
+def profile(request):
+    return render(request, 'accounts/profile.html')

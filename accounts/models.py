@@ -7,9 +7,4 @@ class Profile(models.Model):
     email = models.EmailField(verbose_name = 'E-mail', unique = True)
     univ = models.CharField(verbose_name = '대학교', help_text = 'Full Name을 적어 주세요. (ex)서울대학교)', max_length = 20)
     major = models.CharField(verbose_name = '전공', help_text = 'Full Name을 적어 주세요. (ex)기계항공공학)', max_length = 20)
-    group = models.CharField(verbose_name = '요일조', choices = (
-        ('Tue', '화요일조'),
-        ('Wed', '수요일조'),
-        ('Thu', '목요일조'),
-        ('Fri', '금요일조'),
-    ), max_length = 20)
+    group = models.CharField(verbose_name = '요일조', max_length = 20)

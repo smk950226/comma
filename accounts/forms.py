@@ -54,8 +54,11 @@ class SignupForm(UserCreationForm):
 
         return email
 
-    def save(self):
-        user = super().save()
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.email = self.cleaned_data['email']
+        if commit:
+            user.save()
 
         profile = Profile.objects.create(
             user = user,

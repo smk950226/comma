@@ -2,6 +2,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .models import Profile
 from django.utils.safestring import mark_safe
+from django.core.exceptions import ValidationError
 
 
 class SignupForm(UserCreationForm):
@@ -37,6 +38,15 @@ class SignupForm(UserCreationForm):
         if key != 'comma2018': #원하는 key 입력
             raise forms.ValidationError(mark_safe('<p style="color: red;">key를 잘못 입력하셨습니다.</p>'))
         return key
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email', None)
+        qs = Profile.objects.filter(email = email)
+
+        if qs:
+            raise ValidationError(mark_safe('<p style="color: red;">E-mail이 중복됩니다.</p>'))
+        
+        return email
 
     def save(self):
         user = super().save()

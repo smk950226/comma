@@ -3,9 +3,15 @@ from django import forms
 from .models import Profile
 from django.utils.safestring import mark_safe
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext, gettext_lazy as _
 
 
 class SignupForm(UserCreationForm):
+    error_messages = {
+        'password_mismatch': _( mark_safe('<p style="color: red;">비밀번호가 일치하지 않습니다.</p>')),
+    }
+
+
     name = forms.CharField(label = '이름', required=True, widget = forms.TextInput(attrs={
         'class': 'form-control',
         'placeholder': '이름',
@@ -45,7 +51,7 @@ class SignupForm(UserCreationForm):
 
         if qs:
             raise ValidationError(mark_safe('<p style="color: red;">E-mail이 중복됩니다.</p>'))
-        
+
         return email
 
     def save(self):

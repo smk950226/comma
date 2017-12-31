@@ -4,6 +4,7 @@ from .models import Profile
 from django.utils.safestring import mark_safe
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext, gettext_lazy as _
+from django.contrib.auth import password_validation #변경함
 
 
 class SignupForm(UserCreationForm):
@@ -11,6 +12,24 @@ class SignupForm(UserCreationForm):
         'password_mismatch': _( mark_safe('<p style="color: red;">비밀번호가 일치하지 않습니다.</p>')),
     }
 
+    password1 = forms.CharField(
+        label=_("비밀번호"),
+        strip=False,
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': '비밀번호',
+        }),
+        help_text='8자 이상 입력해 주세요. 숫자로만 구성된 비밀번호는 사용하실 수 없습니다.',
+    )
+    password2 = forms.CharField(
+        label=_("비밀번호 확인"),
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': '비밀번호 확인',
+        }),
+        strip=False,
+        help_text=_("비밀번호를 한번 더 입력해 주세요."),
+    )
 
     name = forms.CharField(label = '이름', required=True, widget = forms.TextInput(attrs={
         'class': 'form-control',
@@ -37,7 +56,10 @@ class SignupForm(UserCreationForm):
         ('Thu', '목요일조'),
         ('Fri', '금요일조'),)))
 
-    key = forms.CharField(label = 'Key', help_text = '각 조의 조장님께 받은 Key를 입력해 주세요.')
+    key = forms.CharField(label = 'Key', required=True, widget = forms.TextInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Key',
+    }), help_text = '각 조의 조장님께 받은 Key를 입력해 주세요.')
 
     def clean_key(self):
         key = self.cleaned_data.get('key', None)

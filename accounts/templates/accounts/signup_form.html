@@ -16,15 +16,117 @@
     <div class="container">
         <div class="col-md-6 col-md-offset-3">
             <h2 class="mrg-btm-30">멘토 가입양식</h2>
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
 
-                <table>
-                    {{ form.as_table }}
-                </table>
-                <input type="submit">
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
+
+                {% for field in form.hidden_fields %}
+                    {{ field }}
+                {% endfor %}
+                
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <span>{{ form.username.label_tag }}</span>
+                        <span>{{ form.username }}</span>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <span>{{ form.password1.label_tag }}</span>
+                        <span>{{ form.password1 }}</span>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <span>{{ form.password2.label_tag }}</span>
+                        <span>{{ form.password2 }}</span>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <span>{{ form.name.label_tag }}</span>
+                        <span>{{ form.name }}</span>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <span>{{ form.email.label_tag }}</span>
+                        <span>{{ form.email }}</span>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <span>{{ form.univ.label_tag }}</span>
+                        <span>{{ form.univ }}</span>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <span>{{ form.major.label_tag }}</span>
+                        <span>{{ form.major }}</span>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <span>{{ form.group.label_tag }}</span>
+                        <span>{{ form.group }}</span>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <span>{{ form.key.label_tag }}</span>
+                        <span>{{ form.key }}</span>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <input class="btn btn-md btn-dark" type="submit" value="등록하기">
+                    </div>
+                </div>
             </form>
         </div>
     </div>
 </section>
 {% endblock content %}
+<section class="section-1">
+    <div class="container">
+        <div class="col-md-6 col-md-offset-3">
+            <h2 class="mrg-btm-30">멘토 등록양식</h2>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
+
+                {% for field in form.hidden_fields %}
+                    {{ field }}
+                {% endfor %}
+                
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <span>{{ form.tel.label_tag }}</span>
+                        <span>{{ form.tel }}</span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <span>{{ form.school.label_tag }}</span>
+                        <span>{{ form.school }}</span>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <span>{{ form.addr.label_tag }}</span>
+                        <span>{{ form.addr }}</span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <span>{{ form.major.label_tag }}</span>
+                        <span>{{ form.major }}</span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <span>{{ form.sub_major.label_tag }}</span>
+                        <span>{{ form.sub_major }}</span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <span>{{ form.grade.label_tag }}</span>
+                        <span>{{ form.grade }}</span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <span>{{ form.photo.label_tag }}</span>
+                        <span>{{ form.photo }}</span>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <span>{{ form.intro }}</span>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <input class="btn btn-md btn-dark" type="submit" value="등록하기">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
